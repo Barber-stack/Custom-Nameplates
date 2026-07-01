@@ -22,7 +22,14 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
+      - name: Show project structure
+        run: |
+          echo "=== settings.gradle.kts ==="
+          cat settings.gradle.kts
+          echo "=== platforms/bukkit/build.gradle.kts ==="
+          cat platforms/bukkit/build.gradle.kts
+          echo "=== platforms/build.gradle.kts ==="
+          cat platforms/build.gradle.kts
       - name: Configure git identity
         run: |
           git config --global user.name "GitHub Actions"
