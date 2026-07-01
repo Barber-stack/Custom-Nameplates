@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew shadowJar
 
       - name: List built jars
-        run: find . -name "*.jar" -path "*/build/libs/*"
+        run: find . -name "*.jar" -path "*/build/libs/*" -exec ls -lh {} \;
 
       - name: Upload built jar
         uses: actions/upload-artifact@v4
