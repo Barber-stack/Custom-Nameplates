@@ -42,13 +42,13 @@ jobs:
           git config --global user.email "actions@github.com"
 
       - name: Build shaded jar
-        run: ./gradlew shadowJar
+        run: ./gradlew :platforms:bukkit:shadowJar
 
       - name: List built jars
-        run: find . -name "*.jar" -path "*/build/libs/*" -exec ls -lh {} \;
+        run: find . -name "*.jar" -newer settings.gradle.kts -exec ls -lh {} \;
 
       - name: Upload built jar
         uses: actions/upload-artifact@v4
         with:
           name: CustomNameplates-jar
-          path: build/libs/CustomNameplates-all.jar
+          path: target/*.jar
