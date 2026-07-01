@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: CustomNameplates-jar
-          path: platforms/bukkit/build/libs/*.jar
+          path: build/libs/CustomNameplates-all.jar
