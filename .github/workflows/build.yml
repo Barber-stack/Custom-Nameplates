@@ -23,8 +23,14 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Show relevant build script section
+        run: sed -n '1,60p' build.gradle.kts
+
+      - name: Configure git safe directory
+        run: git config --global --add safe.directory '*'
+
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build --stacktrace
 
       - name: Upload built jar
         uses: actions/upload-artifact@v4
