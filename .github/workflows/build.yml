@@ -24,12 +24,18 @@ jobs:
         run: chmod +x gradlew
       - name: Show project structure
         run: |
+          echo "=== Repo root ==="
+          ls -la
           echo "=== settings.gradle.kts ==="
-          cat settings.gradle.kts
-          echo "=== platforms/bukkit/build.gradle.kts ==="
-          cat platforms/bukkit/build.gradle.kts
-          echo "=== platforms/build.gradle.kts ==="
-          cat platforms/build.gradle.kts
+          cat settings.gradle.kts || echo "(not found)"
+          echo "=== platforms directory ==="
+          find platforms -maxdepth 2 -type f -name "*.gradle.kts"
+          echo "=== Each platforms build file ==="
+          for f in $(find platforms -maxdepth 2 -type f -name "*.gradle.kts"); do
+            echo "--- $f ---"
+            cat "$f"
+          done
+        continue-on-error: true
       - name: Configure git identity
         run: |
           git config --global user.name "GitHub Actions"
